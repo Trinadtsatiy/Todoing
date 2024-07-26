@@ -1,10 +1,10 @@
 from backend.app.application.common.interactor import Interactor
 from backend.app.application.common.password_hasher import PasswordHasher
 from backend.app.application.common.unit_of_work import UnitOfWork
-from backend.app.application.contracts.authentication.authentication_response import (
-    AuthenticationResponse,
-)
-from backend.app.application.contracts.authentication.register_request import RegisterRequest
+from backend.app.application.contracts.authentication.authentication_response import \
+    AuthenticationResponse
+from backend.app.application.contracts.authentication.register_request import \
+    RegisterRequest
 from backend.app.domain.users.error import UserAlreadyExistsError
 from backend.app.domain.users.repository import UserRepository
 from backend.app.domain.users.user import User, UserEmail
@@ -25,7 +25,7 @@ class Register(Interactor[RegisterRequest, AuthenticationResponse]):
         user_exists = await self.user_repository.find_by_email(UserEmail(request.email))
 
         if user_exists:
-            raise UserAlreadyExistsError("User with that email already exists")
+            raise UserAlreadyExistsError("Этот пользователь уже существует")
 
         user = User.create(
             first_name=request.first_name,

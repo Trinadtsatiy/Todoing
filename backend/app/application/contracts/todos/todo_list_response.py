@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
-from backend.app.application.contracts.todos.todo_details_response import TodoDetailsResponse
+from backend.app.application.contracts.todos.todo_details_response import \
+    TodoDetailsResponse
 
 
 @dataclass(frozen=True)

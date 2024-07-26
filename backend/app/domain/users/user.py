@@ -4,7 +4,6 @@ from uuid import UUID, uuid4
 
 from backend.app.domain.common.entity import Entity
 from backend.app.domain.common.error import DomainValidationError
-
 from backend.app.domain.common.value_object import ValueObject
 
 

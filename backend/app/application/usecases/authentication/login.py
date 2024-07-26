@@ -1,11 +1,12 @@
 from backend.app.application.common.interactor import Interactor
 from backend.app.application.common.password_hasher import PasswordHasher
+from backend.app.application.contracts.authentication.authentication_response import \
+    AuthenticationResponse
+from backend.app.application.contracts.authentication.login_request import \
+    LoginRequest
 from backend.app.domain.users.error import UserInvalidCredentialsError
 from backend.app.domain.users.repository import UserRepository
 from backend.app.domain.users.user import UserEmail
-
-from backend.app.application.contracts.authentication.authentication_response import (AuthenticationResponse)
-from backend.app.application.contracts.authentication.login_request import LoginRequest
 
 
 class Login(Interactor[LoginRequest, AuthenticationResponse]):
@@ -23,7 +24,7 @@ class Login(Interactor[LoginRequest, AuthenticationResponse]):
                 request.email,
             )
         )
-        error = UserInvalidCredentialsError("Email or password is incorrect")
+        error = UserInvalidCredentialsError("Почта или пароль неверны")
         if user is None:
             raise error
 

@@ -32,7 +32,7 @@ class TodoContent(ValueObject):
 
     def __post_init__(self) -> None:
         if not self.value:
-            raise DomainValidationError("Содержание Todo должно быть менее 1000 символов.")
+            raise DomainValidationError("Содержание Todo должно иметь хотя бы 1 символ.")
 
         if len(self.value) > 1000:
             raise DomainValidationError("Содержание Todo должно быть менее 1000 символов.")

@@ -1,12 +1,13 @@
 from datetime import datetime
 
+from psycopg import AsyncConnection
+from psycopg.rows import dict_row
+
 from backend.app.domain.todos.repository import TodoRepository
 from backend.app.domain.todos.todo import Todo, TodoContent, TodoId, TodoTitle
 from backend.app.domain.users.user import UserId
 from backend.app.infra.persistence.repositories.mappers.todo_mapper import \
     todo_from_dict_to_entity
-from psycopg import AsyncConnection
-from psycopg.rows import dict_row
 
 
 class PostgresqlTodoRepository(TodoRepository):

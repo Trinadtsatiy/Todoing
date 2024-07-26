@@ -1,9 +1,10 @@
+from psycopg import AsyncConnection
+from psycopg.rows import dict_row
+
 from backend.app.domain.users.repository import UserRepository
 from backend.app.domain.users.user import User, UserEmail, UserId
 from backend.app.infra.persistence.repositories.mappers.user_mapper import \
     user_from_dict_to_entity
-from psycopg import AsyncConnection
-from psycopg.rows import dict_row
 
 
 class PostgresqlUserRepository(UserRepository):

@@ -1,5 +1,6 @@
-from backend.app.application.common.password_hasher import PasswordHasher
 from passlib.handlers.pbkdf2 import pbkdf2_sha256
+
+from backend.app.application.common.password_hasher import PasswordHasher
 
 
 class Pbkdf2PasswordHasher(PasswordHasher):

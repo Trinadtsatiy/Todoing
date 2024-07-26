@@ -2,12 +2,14 @@ from backend.app.application.common.date_time_provider import DateTimeProvider
 from backend.app.application.common.id_provider import IdProvider
 from backend.app.application.common.interactor import Interactor
 from backend.app.application.common.unit_of_work import UnitOfWork
-
-from backend.app.application.contracts.todos.todo_details_response import TodoDetailsResponse
-from backend.app.application.contracts.todos.update_todo_request import UpdateTodoRequest
-from backend.app.domain.todos.error import TodoNotFoundError, TodoAccessDeniedError
+from backend.app.application.contracts.todos.todo_details_response import \
+    TodoDetailsResponse
+from backend.app.application.contracts.todos.update_todo_request import \
+    UpdateTodoRequest
+from backend.app.domain.todos.error import (TodoAccessDeniedError,
+                                            TodoNotFoundError)
 from backend.app.domain.todos.repository import TodoRepository
-from backend.app.domain.todos.todo import TodoId, TodoTitle, TodoContent
+from backend.app.domain.todos.todo import TodoContent, TodoId, TodoTitle
 
 
 class UpdateTodo(Interactor[UpdateTodoRequest, TodoDetailsResponse]):

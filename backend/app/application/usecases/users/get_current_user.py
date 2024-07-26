@@ -1,10 +1,9 @@
 from backend.app.application.common.id_provider import IdProvider
 from backend.app.application.common.interactor import Interactor
-from backend.app.domain.users.error import UserIsNotAuthorizedError
-from backend.app.domain.users.repository import UserRepository
-
 from backend.app.application.contracts.users.current_user_response import \
     CurrentUserResponse
+from backend.app.domain.users.error import UserIsNotAuthorizedError
+from backend.app.domain.users.repository import UserRepository
 
 
 class GetCurrentUser(Interactor[None, CurrentUserResponse]):

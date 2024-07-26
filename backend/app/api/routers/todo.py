@@ -22,68 +22,68 @@ from backend.app.application.usecases.todos.get_todo import (GetTodoById,
                                                              GetTodoList)
 from backend.app.application.usecases.todos.update_todo import UpdateTodo
 
-post_router = APIRouter(
-    prefix="/posts",
-    tags=["Posts"],
+todo_router = APIRouter(
+    prefix="/todos",
+    tags=["Todos"],
     route_class=DishkaRoute,
 )
 
 
-@post_router.get("/", response_model=TodoListResponse)
-async def get_post_list(
-    get_post_list_request: Annotated[GetTodoListRequest, Depends()],
-    get_post_list_interactor: FromDishka[GetTodoList],
+@todo_router.get("/", response_model=TodoListResponse)
+async def get_todo_list(
+    get_todo_list_request: Annotated[GetTodoListRequest, Depends()],
+    get_todo_list_interactor: FromDishka[GetTodoList],
 ) -> TodoListResponse:
-    return await get_post_list_interactor(get_post_list_request)
+    return await get_todo_list_interactor(get_todo_list_request)
 
 
-@post_router.post(
+@todo_router.post(
     "/",
     status_code=201,
     response_model=TodoDetailsResponse,
     dependencies=[Depends(auth_required)],
 )
-async def create_post(
-    create_post_request: CreateTodoRequest,
-    create_post_interactor: FromDishka[CreateTodo],
+async def create_todo(
+    create_todo_request: CreateTodoRequest,
+    create_todo_interactor: FromDishka[CreateTodo],
 ) -> TodoDetailsResponse:
-    return await create_post_interactor(create_post_request)
+    return await create_todo_interactor(create_todo_request)
 
 
-@post_router.get("/{post_id}", response_model=TodoDetailsResponse)
-async def get_post_by_id(
-    post_id: UUID,
-    get_post_interactor: FromDishka[GetTodoById],
+@todo_router.get("/{todo_id}", response_model=TodoDetailsResponse)
+async def get_todo_by_id(
+    todo_id: UUID,
+    get_todo_interactor: FromDishka[GetTodoById],
 ) -> TodoDetailsResponse:
-    return await get_post_interactor(post_id)
+    return await get_todo_interactor(todo_id)
 
 
-@post_router.patch(
-    "/{post_id}",
+@todo_router.patch(
+    "/{todo_id}",
     response_model=TodoDetailsResponse,
     dependencies=[Depends(auth_required)],
 )
-async def update_post(
-    post_id: UUID,
-    update_post_schema: UpdateTodoSchema,
-    update_post_interactor: FromDishka[UpdateTodo],
+async def update_todo(
+    todo_id: UUID,
+    update_todo_schema: UpdateTodoSchema,
+    update_todo_interactor: FromDishka[UpdateTodo],
 ) -> TodoDetailsResponse:
-    return await update_post_interactor(
+    return await update_todo_interactor(
         UpdateTodoRequest(
-            id=post_id,
-            title=update_post_schema.title,
-            content=update_post_schema.content,
+            id=todo_id,
+            title=update_todo_schema.title,
+            content=update_todo_schema.content,
         )
     )
 
 
-@post_router.delete(
-    "/{post_id}",
+@todo_router.delete(
+    "/{todo_id}",
     status_code=204,
     dependencies=[Depends(auth_required)],
 )
-async def delete_post(
-    post_id: UUID,
-    delete_post_interactor: FromDishka[DeleteTodo],
+async def delete_todo(
+    todo_id: UUID,
+    delete_todo_interactor: FromDishka[DeleteTodo],
 ) -> None:
-    await delete_post_interactor(post_id)
+    await delete_todo_interactor(todo_id)

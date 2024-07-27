@@ -1,11 +1,12 @@
-from backend.app.domain.common.error import DomainValidationError
-from backend.app.domain.users.error import (UserAlreadyExistsError,
-                                            UserInvalidCredentialsError,
-                                            UserIsNotAuthorizedError)
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from backend.app.domain.todos.error import TodoAccessDeniedError, TodoNotFoundError
+from backend.app.domain.common.error import DomainValidationError
+from backend.app.domain.todos.error import (TodoAccessDeniedError,
+                                            TodoNotFoundError)
+from backend.app.domain.users.error import (UserAlreadyExistsError,
+                                            UserInvalidCredentialsError,
+                                            UserIsNotAuthorizedError)
 
 
 async def validation_error_exc_handler(request: Request, exc: DomainValidationError) -> JSONResponse:
